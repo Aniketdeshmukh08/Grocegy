@@ -1,0 +1,168 @@
+################# Migration from LOCAL to DEV ##############################
+
+Change 1 - 11th April 2025 - DONE
+Change 2 - 
+
+################# Migration from DEV to PROD ##############################
+
+Change 1 - 11th April 2025 - DONE
+Change 2 - 
+
+#########################################################################
+
+
+Query No 1.1
+ALTER TABLE users
+ADD COLUMN `created_on` timestamp DEFAULT CURRENT_TIMESTAMP AFTER `isactive`,
+ADD COLUMN `updated_on` timestamp DEFAULT CURRENT_TIMESTAMP AFTER `created_on`,
+ADD COLUMN `created_by` varchar(255) DEFAULT 'admin' AFTER `updated_on`,
+ADD COLUMN `updated_by` varchar(255) DEFAULT 'admin' AFTER `created_by`;
+
+Query No 1.2
+ALTER TABLE orders
+ADD COLUMN `customer_note` text AFTER `costamount`,
+ADD COLUMN `admin_note` text AFTER `customer_note`,
+ADD COLUMN `delivery_partner_note` text AFTER `admin_note`,
+ADD COLUMN `instructions` varchar(500) AFTER `delivery_partner_note`,
+ADD COLUMN `payment_cash` int(11) AFTER `instructions`,
+ADD COLUMN `payment_online` int(11) AFTER `payment_cash`,
+ADD COLUMN `final_settle` tinyint(1) AFTER `payment_online`,
+ADD COLUMN `remarks` varchar(255) AFTER `final_settle`;
+
+Query No 1.3
+ALTER TABLE order_product_details
+ADD COLUMN payment_upi INT(10) NOT NULL DEFAULT 0,
+ADD COLUMN payment_cash INT(10) NOT NULL DEFAULT 0,
+ADD COLUMN discount DECIMAL(10,2) NOT NULL DEFAULT 0.00;
+
+Query No 1.4
+ALTER TABLE `orders` CHANGE `payment_cash` `payment_cash` INT(11) NULL DEFAULT '0', CHANGE `payment_online` `payment_online` INT(11) NULL DEFAULT '0', CHANGE `final_settle` `final_settle` TINYINT(1) NULL DEFAULT '0';
+
+Query 1.5
+UPDATE orders SET final_settle = 0 WHERE 1
+
+
+Query No 2.1
+have to do changes in Prod DB.. 
+ALTER TABLE orders ADD COLUMN billstatus INT DEFAULT 0;
+
+Query no 3.0
+have to do changes in Prod DB.. 
+ALTER TABLE orders
+MODIFY order_date DATE;
+
+
+Query no 3.1
+have to do changes in Prod DB.. 
+CREATE TABLE `faqs` (
+  `faq_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `question` TEXT COLLATE utf8_unicode_ci NOT NULL,
+  `answer` TEXT COLLATE utf8_unicode_ci NOT NULL,
+  `type` VARCHAR(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isactive` TINYINT(1) DEFAULT 1,
+  `created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+    ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`faq_id`)
+) ENGINE=InnoDB 
+DEFAULT CHARSET=utf8 
+COLLATE=utf8_unicode_ci;
+
+
+
+Query no 3.2
+have to do changes in Prod DB.. 
+
+
+CREATE TABLE `custom_orders` (
+  `order_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `order_date` DATE NOT NULL,
+  `order_time` TIME NOT NULL,
+  `status` VARCHAR(50) COLLATE utf8_unicode_ci DEFAULT 'placed',
+  `name` VARCHAR(100) COLLATE utf8_unicode_ci NOT NULL,
+  `address` TEXT COLLATE utf8_unicode_ci NOT NULL,
+  `contact` VARCHAR(20) COLLATE utf8_unicode_ci NOT NULL,
+  `userid` INT(11) DEFAULT NULL,
+  `addressid` INT(11) DEFAULT NULL,
+  `paymentamount` INT(10) DEFAULT 0,
+  `totaldiscount` INT(10) DEFAULT 0,
+  `additionaldiscount` INT(10) DEFAULT 0,
+  `paymentstatus` VARCHAR(50) COLLATE utf8_unicode_ci DEFAULT 'pending',
+  `paymentmode` VARCHAR(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `delivery_status` VARCHAR(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `costamount` DECIMAL(10,2) DEFAULT 0.00,
+  `payment_cash` INT(10) DEFAULT 0,
+  `payment_online` INT(10) DEFAULT 0,
+  `final_settle` INT(10) DEFAULT 0,
+  `remarks` TEXT COLLATE utf8_unicode_ci,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_unicode_ci;
+
+Query no 3.3
+have to do changes in Prod DB.. 
+
+
+CREATE TABLE `custom_order_details` (
+  `order_details_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `order_id` INT(11) NOT NULL,
+  `item_name` VARCHAR(150) COLLATE utf8_unicode_ci NOT NULL,
+  `price` INT(10) NOT NULL DEFAULT 0,
+  `quantity` INT(11) NOT NULL DEFAULT 1,
+  `final_price` INT(10) NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`order_details_id`),
+  KEY `fk_custom_order_details_order` (`order_id`),
+  CONSTRAINT `fk_custom_order_details_order`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `custom_orders` (`order_id`)
+    ON DELETE CASCADE
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_unicode_ci;
+
+
+Query no 3.4
+have to do changes in Prod DB.. 
+
+
+CREATE TABLE `testimonials` (
+  `testimonial_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `author_name` VARCHAR(255) COLLATE utf8_unicode_ci NOT NULL,
+  `author_image` VARCHAR(255) COLLATE utf8_unicode_ci 
+    DEFAULT '/uploads/testimonials/default_author.png',
+  `author_designation` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `testimonial_text` TEXT COLLATE utf8_unicode_ci NOT NULL,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+  `rating` INT(2) NOT NULL DEFAULT 1,
+  `created_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_on` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`testimonial_id`)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_unicode_ci;
+
+Query no 3.5
+have to do changes in Prod DB.. 
+
+CREATE TABLE `feedbacks` (
+  `fid` INT(11) NOT NULL AUTO_INCREMENT,
+  `userid` VARCHAR(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rating` VARCHAR(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `is_active` TINYINT(4) DEFAULT 1,
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` VARCHAR(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mobile` VARCHAR(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`fid`)
+) ENGINE=InnoDB
+DEFAULT CHARSET=utf8
+COLLATE=utf8_unicode_ci;

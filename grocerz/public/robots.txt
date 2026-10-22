@@ -1,0 +1,20 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Rules for all crawlers
+User-agent: *
+
+# Block pages that are not useful for search results
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /dashboard/
+Disallow: /allorders/
+Disallow: /orderhistory/
+Disallow: /deletedorder/
+Disallow: /address/
+Disallow: /search?q=* 
+
+# Allow everything else
+Allow: /
+
+# Location of sitemap file
+Sitemap: https://grocji.com/sitemap.xml
