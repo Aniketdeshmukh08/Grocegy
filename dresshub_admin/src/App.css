@@ -1,0 +1,340 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.theme{
+  background: #cccccf;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.secureheader {
+  min-height: 5vh;
+  max-height: 5vh;
+}
+
+.securefooter {
+  min-height: 5vh;
+  max-height: 5vh;
+}
+
+.maincontent {
+  min-height: 90vh;
+  max-height: 90vh;
+}
+
+.scrollPage {
+  overflow: auto;
+  height: 80vh;
+}
+
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -75px;
+  margin-top: -75px;
+}
+
+.loader img {
+  width: 150px;
+  height: auto;
+}
+
+.logo-image {
+  padding-top: 12px;
+  max-width: 290px !important;
+}
+
+.right-panel .navbar-header {
+  background-color: transparent !important;
+}
+
+.exam-palete-qs {
+ 
+  padding: 2px 7px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  color: black;
+}
+
+.exam-palete-qs-marked {
+  
+  background: rgba(25, 135, 84, 0.25);
+  padding: 2px 7px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  color: black;
+}
+
+.qs-panel {
+
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.ans-panel {
+  background-color: #f4f7e5;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.ans-panel-active {
+ 
+  background: rgba(25, 135, 84, 0.25);
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.ans-panel-span {
+  /* background-color: #ebf4c1;
+  padding: 10px;
+  margin-bottom: 10px; */
+}
+
+.ans-panel-span-active {
+  
+  background: rgba(255, 193, 7, 0.25);
+  
+}
+
+.full-page {
+  position: absolute;
+  z-index: 55555555;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 105%;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+}
+
+.product-view {
+  height: 300px;
+  width: auto;
+}
+
+
+
+.show-btn {
+  position: fixed;
+  top: 100px; 
+  left: 10px;
+  z-index: 1001;
+}
+
+
+
+
+.left-panel {
+  width: 265px !important;
+  background-color: #f8f8fa;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease;
+  z-index: 999;
+}
+
+.left-panel.hidden {
+  transform: translateX(-100%);
+}
+
+
+.main-content {
+  margin-left: 240px;
+  transition: margin-left 0.3s ease;
+}
+
+.left-panel.hidden ~ .main-content {
+  margin-left: 0;
+}
+
+
+.btn-outline-secondary {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 18px;
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+.navbar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.right-panel {
+  margin-left: 240px; 
+}
+
+
+.right-panel {
+  margin-left: 240px;
+  width: calc(100% - 240px); 
+  transition: margin-left 0.3s ease;
+}
+
+.left-panel.hidden ~ .right-panel {
+  margin-left: 0;
+  width: 100%; 
+}
+
+
+.menu-shrink-button {
+    visibility: hidden !important;
+  }
+
+/* === Responsive Sidebar (Mobile Drawer) === */
+@media (max-width: 768px) {
+  /* Sidebar base */
+  .left-panel {
+    display: none !important; /* hidden by default */
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 300px !important;
+    max-width: 300px !important;
+    height: 100vh !important;
+    background: #fff !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1050 !important;
+    overflow-y: auto !important;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  /* When active/open */
+  .left-panel.active {
+    display: block !important;
+    transform: translateX(0);
+  }
+
+  /* Force the Bootstrap collapse menu to stay visible */
+  .left-panel .main-menu,
+  .left-panel .navbar-collapse {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    opacity: 1 !important;
+  }
+
+  /* Fix nav links visibility */
+  .left-panel .nav-link,
+  .left-panel .menu-title {
+    color: #198754 !important;
+    font-weight: 600 !important;
+    background: #fff !important;
+    display: block !important;
+  }
+
+  /* Optional overlay behind sidebar */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1049;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  /* Make content full width */
+  .main-content,
+  .right-panel {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Style toggle button */
+  .menu-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    background: #198754;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .menu-shrink-button {
+    visibility: visible !important;
+  }
+}

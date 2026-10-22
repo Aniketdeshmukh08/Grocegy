@@ -1,0 +1,83 @@
+.searchBar {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.searchForm {
+  display: flex;
+  gap: 8px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.searchButton {
+  padding: 8px 16px;
+  background-color: #198754;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.searchButton:hover {
+  background-color: #157347;
+}
+
+.searchHistory {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.historyItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.historyItem:hover {
+  background-color: #f5f5f5;
+}
+
+.clearButton {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background-color: #f8f9fa;
+  color: #dc3545;
+  cursor: pointer;
+  border-top: 1px solid #ddd;
+  transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+  background-color: #e2e6ea;
+}
+
+.emptyMessage {
+  padding: 12px;
+  color: #666;
+  text-align: center;
+  font-style: italic;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 4px;
+}

@@ -1,0 +1,79 @@
+#weatherWidget .currentDesc {
+  color: #ffffff !important;
+}
+
+.traffic-chart {
+  min-height: 335px;
+}
+
+#flotPie1 {
+  height: 150px;
+}
+
+#flotPie1 td {
+  padding: 3px;
+}
+
+#flotPie1 table {
+  top: 20px !important;
+  right: -10px !important;
+}
+
+.chart-container {
+  display: table;
+  min-width: 270px;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#flotLine5 {
+  height: 105px;
+}
+
+#flotBarChart {
+  height: 150px;
+}
+
+#cellPaiChart {
+  height: 160px;
+}
+
+.display_block {
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .right-panel {
+    background: #f1f2f7;
+    margin-left: 0px;
+    margin-top: 55px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menutoggle {
+    display: none !important;
+  }
+}
+
+footer.site-footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .right-panel header.header .top-right {
+    padding: 0px;
+  }
+  .user-area {
+    padding-left: 0px;
+  }
+  .scrollPage {
+    padding-bottom: 100px;
+  }
+  .full-page {
+    height: 115%;
+  }
+}
